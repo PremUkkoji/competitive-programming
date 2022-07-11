@@ -20,12 +20,19 @@ void setio(){
 }
 
 void floydWarshall(vector< vector<int> >& graph, int V){
+    vector< vector<int> > ref(V, vector<int>(V));
+    
     for(int k=0;k<V;k++){
         for(int i=0;i<V;i++){
             for(int j=0;j<V;j++){
+                ref[i][j] = graph[i][j];
+            }
+        }
+        for(int i=0;i<V;i++){
+            for(int j=0;j<V;j++){
                 // if there is path from i -> k and k -> j and is a better one, than update
-                if(graph[i][k]!=inf && graph[k][j]!=inf && graph[i][k] + graph[k][j] < graph[i][j])
-                    graph[i][j] = graph[i][k] + graph[k][j];
+                if(ref[i][k]!=inf && ref[k][j]!=inf && ref[i][k] + ref[k][j] < ref[i][j])
+                    graph[i][j] = ref[i][k] + ref[k][j];
             }
         }
     }
@@ -40,7 +47,7 @@ void floydWarshall(vector< vector<int> >& graph, int V){
 
 signed main(){
     io;
-    setio();
+    //setio();
 
     int V;
     cin>>V;

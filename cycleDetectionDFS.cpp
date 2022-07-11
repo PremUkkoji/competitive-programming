@@ -6,6 +6,7 @@ vector< vector<int> > edges(n);
 
 bool dfs(int src, vector<bool> vis){
 	vis[src] = true;
+    
 	vector<int> adj = edges[src];
 	for(int i=0;i<adj.size();i++){
 		if(vis[adj[i]]) return true;

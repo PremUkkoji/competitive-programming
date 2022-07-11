@@ -11,7 +11,7 @@ bool sortByFinishTime(Job job1, Job job2){
     return job1.finish_time < job2.finish_time;
 }
 
-int findNextNode(vector<Job> arr, int index){
+int getJobIndex(vector<Job> arr, int index){
     int start = 0, finish = index-1, mid;
     while(start <= finish){
         mid = (start+finish)/2;
@@ -35,11 +35,12 @@ int findMaximumProfit(vector<Job> arr, int n){
     
     for(int i=1;i<n;i++){
         int include = arr[i].value;
-        int nextNodeIndex = findNextNode(arr, i);
+        // get index of job which has been performed right before this one
+        int nextNodeIndex = getJobIndex(arr, i);
         if(nextNodeIndex != -1)
             include += table[nextNodeIndex];
         
-        table[i] = max(include, table[n-1]);
+        table[i] = max(include, table[i-1]);
     }
     int result = table[n-1];
     delete[] table;

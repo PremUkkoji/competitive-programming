@@ -30,7 +30,7 @@ bool isSubsetSum(vi& arr, int n, int sum){
         return false;
 
     if(sum < arr[n-1])
-        isSubsetSum(arr, n-1, sum);
+        return isSubsetSum(arr, n-1, sum);
 
     return isSubsetSum(arr, n-1, sum-arr[n-1]) || isSubsetSum(arr, n-1, sum);
 }

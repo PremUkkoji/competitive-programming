@@ -6,6 +6,7 @@ vector<int> subsetSum(vector<int> arr, int sum){
 	vector< vector<bool> > T(n+1, vector<bool>(sum+1));
 	
 	for(int j=0;j<=sum;j++) T[0][j] = false;
+	if(arr[0] <= sum) T[0][arr[0]] = true;
 	for(int i=0;i<n;i++) T[i][0] = true;
 
 	for(int i=1;i<=n;i++){
@@ -28,7 +29,6 @@ signed main(){
 	cout.tie(0);
 
 	vector<int> arr;
-	arr.push_back(2);
 	arr.push_back(3);
 	arr.push_back(7);
 	arr.push_back(8);

@@ -22,15 +22,16 @@ void setio(){
 void bellmanFord(vector< vector<int> >& graph, int V, int src){
     vector<int> dp(V, inf);
     dp[src] = 0;
+    for(int i=0;i<V-1;i++){
     for(int u=0;u<V;u++){
         for(int v=0;v<V;v++){
             // if there is edge && we have reached u before &&
             // there is less distance to reach than update
-            if(graph[u][v]!=0 && dp[u]!=inf &&  dp[u] + graph[u][v] < dp[v]){
+            if(graph[u][v] && dp[u]!=inf &&  dp[u] + graph[u][v] < dp[v]){
                 dp[v] = dp[u] + graph[u][v];
             }
         }
-    }
+    }}
 
     for(int i=0;i<V;i++){
         cout<<src<<" - "<<i<<" : "<<dp[i]<<"\n";
@@ -39,7 +40,7 @@ void bellmanFord(vector< vector<int> >& graph, int V, int src){
 
 signed main(){
     io;
-    setio();
+    //setio();
 
     int V;
     cin>>V;
